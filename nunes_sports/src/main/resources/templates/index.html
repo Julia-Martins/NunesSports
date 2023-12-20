@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="
+        https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+        <title>NUNES SPORTS</title>
+
+        <style>
+            table, th, td {
+                border: 1px solid rgb(0, 119, 255);
+                border-collapse: collapse;
+            }
+     
+            body {
+                margin:16px;
+                padding:0;
+            }
+     
+        </style>
+    </head>
+    <body>
+        <span th:if="${message != ''}">
+            <div class="alert alert-danger" role="alert">
+                <span th:text="${error}"/>
+            </div>
+        </span>
+        <table style="width: 90%;">
+            <tr>
+                <th>Código do Produto</th>
+                <th>Nome Produto</th>
+                <th>Descrição Produto</th>
+                <th>Preço do Produto</th>
+                <th>Excluir Produto</th>
+                <th>Alterar Produto</th>
+            </tr>
+            
+            <tr th:each="produto : ${listProdutos}">
+                <td th:text="${produto.id}"></td>
+                <td th:text="${produto.nome_prod}"></td>
+                <td th:text="${produto.descricao_prod}"></td>
+                <td th:text="${produto.preco_prod}"></td>
+                <td><a th:href="@{/delete(id=${produto.id})}">Excluir</a></td>
+                <td><a th:href="@{/update(id=${produto.id})}">Alterar</a></td>
+            </tr>
+        </table><br>
+
+        <button class="btn btn-primary">
+            <a href="/insert" style="color: white;">Inserir Produto</a>
+        </button>
+    </body>
+</html>
